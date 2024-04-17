@@ -1,0 +1,16 @@
+   #Parsing
+    data= json.loads(request.data)
+    nome=data.get("nome")
+    g1=data.get("g1")
+    g2=data.get("g2")
+    g3=data.get("g3")
+
+ if not nome or g1 or g2 or g3 :
+        abort(400, "Informações do aluno faltando!")
+    aluno = Alunos(nome=nome,g1=g1,g2=g2,g3=g3)
+    aluno.calcular()
+    sala.appen(aluno)
+    return {
+        "id": aluno.id,
+        "url":f"/api/notas/{aluno.id}"
+        }
